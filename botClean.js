@@ -5,7 +5,7 @@ const client = new Discord.Client()
 var admin = ["537091937271021580", "289210805763964929"];
 var mainServer = client.guilds.get("545413042712739840");
 
-//var osuKey = f461f06d1b9316a3733eb20fba0c55eb41de411d;
+var osuKey = process.env.osuApi;
 //Initialization
 client.on('ready', () => {
 
@@ -208,14 +208,6 @@ function prefixCommands(msg){
 }
 
 function adminCommands(msg){
-    //DM string to Ani
-    if(msg.content.startsWith("/tellani")){
-        var ani = client.users.get("303610767033237506");
-        var msgToAni = msg.content.substring(msg.content.indexOf(" ") + 1);
-        ani.send(msgToAni)
-          .then(console.log(`Sent to Ani: ${msgToAni}`))
-          .catch(console.error);
-    }
 
     //DM user ID
     if(msg.content.startsWith("/dm")){
