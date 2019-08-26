@@ -84,11 +84,12 @@ function prefixCommands(msg){
     if(!msg.content.startsWith("/")){
         return;
     }
-    var txt = msg.content.substring(1).toLowerCase();
+    var txtLower = msg.content.substring(1).toLowerCase();
+    var txt = msg.content.substring(1);
     var chan = msg.channel;
 
     //Sends command help embed
-    if(txt === "help"){
+    if(txtLower === "help"){
       const helpMsg = new Discord.RichEmbed()
           .setTitle("YangBot commands")
           .setAuthor("YangBot", "https://cdn.discordapp.com/attachments/344959018676256772/490381512772943873/eternal_suffering_john.jpg")
@@ -103,7 +104,7 @@ function prefixCommands(msg){
     }
 
     //Server info
-    if(txt === "info"){
+    if(txtLower === "info"){
         var servReq = msg.guild;
         const infoMsg = new Discord.RichEmbed()
           .setTitle(`Info about ${servReq.name}`)
@@ -121,8 +122,8 @@ function prefixCommands(msg){
     }
 
     //Sends X headpats in dms
-    if(txt.startsWith("headpat")){
-        var numHeadpats = parseInt(txt.substring(txt.indexOf(" ") + 1));
+    if(txtLower.startsWith("headpat")){
+        var numHeadpats = parseInt(txtLower.substring(txtLower.indexOf(" ") + 1));
         if(numHeadpats > 25){
             sendMsg("Too many headpats!!!!11!1!", chan);
         }else{
@@ -137,13 +138,13 @@ function prefixCommands(msg){
       }
 
     //Rolls random num, 4chan-style
-    if(txt === "roll"){
+    if(txtLower === "roll"){
         var randNum = Math.floor(Math.random() * 99999999) + 1;
         sendMsg(randNum, chan);
     }
 
     //Replaces u's and o's with uwus and owos
-    if(txt.startsWith("uwuify")){
+    if(txtLower.startsWith("uwuify")){
       var uwuMsg = "";
       var originalString = txt.substring(txt.indexOf(' ') + 1);
       for(var iuwu = 0; iuwu < originalString.length; iuwu++){
@@ -164,17 +165,17 @@ function prefixCommands(msg){
     }
 
     //Removes instances of uwu and owo
-    if(txt.startsWith("unuwuify")){
+    if(txtLower.startsWith("unuwuify")){
         var noUwu = "";
         txt = txt.substring(txt.indexOf(" "));
         for(var deuwui = 0; deuwui < txt.length; deuwui++){
             noUwu += txt.charAt(deuwui);
 
-            if(txt.charAt(deuwui) === 'u'){
+            if(txt.charAt(deuwui) === 'u' || txt.charAt(deuwui) === 'U'){
                 while(deuwui + 2 < txt.length && txt.substring(deuwui + 1, deuwui + 3) === "wu"){
                     deuwui += 2;
                 }
-            }else if(txt.charAt(deuwui) === 'o'){
+            }else if(txt.charAt(deuwui) === 'o' || txt.charAt(deuwui) === 'O'){
                 while(deuwui + 2 < txt.length && txt.substring(deuwui + 1, deuwui + 3) === "wo"){
                     deuwui += 2;
                 }
@@ -185,7 +186,7 @@ function prefixCommands(msg){
     }
 
     //Scrambles String
-    if(txt.startsWith("stroke")){
+    if(txtLower.startsWith("stroke")){
       var dysMsg = txt.substring(txt.indexOf(' ') + 1);
 
       var scalars = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -226,26 +227,27 @@ function adminCommands(msg){
 }
 
 function implicitCommands(msg){
-    var txt = msg.content.toLowerCase();
+    var txtLower = msg.content.toLowerCase();
+    var txt = msg.content;
     var chan = msg.channel;
 
     //No U
-    if(txt === "no u"){
+    if(txtLower === "no u"){
         sendMsg("no u", chan);
     }
 
     //Boop Beep
-    if(txt === "boop"){
+    if(txtLower === "boop"){
         sendMsg("beep", chan);
     }
 
     //Send squillion value
-    if(txt.includes("squillion")){
+    if(txtLower.includes("squillion")){
         sendMsg("259232147948794494594485446818048254863271026096382337884099237269509380022108148908589797968903058274437782549758243999867043174477180579595714249308002763427793979644775390625000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", chan);
     }
 
     //Eternal Suffering John
-    if(txt.includes("cursed")){
+    if(txtLower.includes("cursed")){
       chan.send({
           files: ['https://cdn.discordapp.com/attachments/545410384132309006/570396383765463060/jawn.jpg']
       })
@@ -254,12 +256,12 @@ function implicitCommands(msg){
     }
 
     ///Death to Israel
-    if(txt === "death to israel"){
+    if(txtLower === "death to israel"){
         sendMsg("When you read the Quran, seek refuge with Allah from Satan the outcast. He has no authority over those who believe and trust in their Lord. His authority is only over those who follow him, and those who associate others with Him.", chan);
     }
 
     //What's fascism
-    if(txt.includes("what's fascism") || txt.includes("what is fascism")){
+    if(txtLower.includes("what's fascism") || txtLower.includes("what is fascism")){
         sendMsg("Fascism follows the truth, and uses nature "
       + "as its guide to do so, as nature is a manifestation of what is true."
       + " Fascism is an ancient ideology that predates man, for it is simply "
@@ -272,17 +274,17 @@ function implicitCommands(msg){
     }
 
     //uwu
-    if(txt === "uwu"){
+    if(txtLower === "uwu"){
         sendMsg("owo", chan);
     }
 
     //owo
-    if(txt === "owo"){
+    if(txtLower === "owo"){
         sendMsg("What's this?", chan);
     }
 
     //Rhodesia
-    if(txt.includes("rhodesia")){
+    if(txtLower.includes("rhodesia")){
 
       rand = Math.floor(Math.random() * 10);
       if (rand == 0) {
@@ -323,16 +325,16 @@ function implicitCommands(msg){
     }
 
     //Dad Joke
-    if(txt.startsWith("i'm ") || txt.startsWith("im ")){
+    if(txtLower.startsWith("i'm ") || txtLower.startsWith("im ")){
         var dadJoke = `Hi ${txt.substring(txt.indexOf(" ") + 1)}, I'm Andrew Yang!`;
         sendMsg(dadJoke, chan);
     }
 
-    if(txt === "bruh"){
+    if(txtLower === "bruh"){
         sendImg('https://cdn.discordapp.com/attachments/545410384132309006/589655239020511234/dXKx9agF_400x400.png',  chan);
     }
 
-    if(txt === "vc tiem"){
+    if(txtLower === "vc tiem"){
         var voiceChan = client.channels.get("545439566006583306");
         voiceChan.join();
     }
