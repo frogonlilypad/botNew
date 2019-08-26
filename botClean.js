@@ -4,7 +4,7 @@ const osu = require('node-osu')
 const client = new Discord.Client()
 var admin = ["537091937271021580", "289210805763964929"];
 var mainServer = client.guilds.get("545413042712739840");
-//TEST CHANGE
+
 var osuKey = process.env.osuApi;
 //Initialization
 client.on('ready', () => {
