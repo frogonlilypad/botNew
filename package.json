@@ -1,0 +1,18 @@
+{
+  "name": "JohnBot",
+  "version": "1.0.0",
+  "description": "Thot Destroyer",
+  "main": "bot.js",
+  "author": "@Scheiße#2511",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "discord.js": "^11.4.2",
+    "dotenv": "^8.1.0",
+    "moment": "^2.24.0",
+    "node-gyp": "^5.0.1",
+    "node-osu": "^1.3.3",
+    "nodemon": "^1.19.1",
+    "rebuild": "^0.1.2",
+    "winston": "^3.1.0"
+  }
+}
