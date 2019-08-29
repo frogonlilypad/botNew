@@ -55,7 +55,7 @@ standard_input.on('data', function (data) {
         }else if (data.startsWith("user")){
             console.log(`Users in ${requestedGuild.name}:`);
             requestedGuild.members.forEach((member) => {
-                console.log(`- ${member.nickname} (${member.id})`);
+                console.log(`- ${member.displayName} (${member.id})`);
             })
         }
     }
