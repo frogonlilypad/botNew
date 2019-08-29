@@ -15,12 +15,7 @@ client.on('ready', () => {
 // List servers the bot is connected to
     console.log("Servers:")
     client.guilds.forEach((guild) => {
-        console.log(" - " + guild.name)
-
-        // List all channels
-        guild.channels.forEach((channel) => {
-            console.log(` -- ${channel.name} (${channel.type}) - ${channel.id}`)
-        })
+        console.log(` - ${guild.name} (${guild.id})`);
     })
 })
 
@@ -40,9 +35,29 @@ console.log("Please input text in command line.");
 standard_input.on('data', function (data) {
 
     if(data.startsWith('announce ')){
-        var announcement = data.substring(data.indexOf(' ') + 1);
+        //Truncate announce command
+        data = data.substring(data.indexOf(' ') + 1);
         var announceChan = client.channels.get("545413042712739842");
         sendMsg(announcement, announceChan);
+    }
+
+    if(data.startsWith('ls ')){
+        //Truncate ls command
+        var beginArg = data.indexOf(' ') + 1;
+        var requestedID = data.substring(beginArg, beginArg + 18);
+        var requestedGuild = client.guilds.get(requestedID);
+        data = data.substring(beginArg + 19);
+        if(data.startsWith("chan")){
+            console.log(`Channels in ${requestedGuild.name}:`);
+            requestedGuild.channels.forEach((channel) => {
+                console.log(`- ${channel.name} (${channel.type} // ${channel.id})`);
+            });
+        }else if (data.startsWith("user")){
+            console.log(`Users in ${requestedGuild.name}:`);
+            requestedGuild.members.forEach((member) => {
+                console.log(`- ${member.nickname} (${member.id})`);
+            })
+        }
     }
 });
 
