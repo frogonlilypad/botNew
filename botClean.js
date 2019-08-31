@@ -350,7 +350,7 @@ function implicitCommands(msg){
     }
 
     if(txtLower === "vc tiem"){
-        var voiceChan = client.channels.get("545439566006583306");
+        var voiceChan = client.channels.get("610266270960713728");
         voiceChan.join();
     }
 }
