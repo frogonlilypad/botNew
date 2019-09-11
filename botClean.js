@@ -5,6 +5,8 @@ const client = new Discord.Client()
 var admin = ["537091937271021580", "289210805763964929"];
 var mainServer = client.guilds.get("545413042712739840");
 
+const PROFILE_IMAGE_URL = "https://cdn.discordapp.com/attachments/344959018676256772/490381512772943873/eternal_suffering_john.jpg";
+
 var osuKey = process.env.osuApi;
 //Initialization
 client.on('ready', () => {
@@ -60,7 +62,8 @@ client.on('message', (receivedMessage) => {
         //Forward DMs not from admin to Jace
         if(admin.indexOf(receivedMessage.author.id) == -1){
             var jace = client.users.get("537091937271021580");
-            jace.send(`Received DM from ${receivedMessage.author.username} (ID: ${receivedMessage.author.id}):\n${receivedMessage.content}`)
+            jace.send(`Received DM from ${receivedMessage.author.username}
+                     (ID: ${receivedMessage.author.id}):\n${receivedMessage.content}`)
                 .then(console.log("DM forwarded"))
                 .catch(console.error);
         }
@@ -91,7 +94,7 @@ function prefixCommands(msg){
     if(txt === "help"){
       const helpMsg = new Discord.RichEmbed()
           .setTitle("YangBot commands")
-          .setAuthor("YangBot", "https://cdn.discordapp.com/attachments/344959018676256772/490381512772943873/eternal_suffering_john.jpg")
+          .setAuthor("YangBot", PROFILE_IMAGE_URL)
           .setColor(0xED25E9)
           .setFooter("If you need any other help with commands and functionality, go fuck yourself.")
           .setThumbnail("")   //FIXME: add thumbnail
@@ -107,7 +110,7 @@ function prefixCommands(msg){
         var servReq = msg.guild;
         const infoMsg = new Discord.RichEmbed()
           .setTitle(`Info about ${servReq.name}`)
-          .setAuthor("YangBot", "https://cdn.discordapp.com/attachments/344959018676256772/490381512772943873/eternal_suffering_john.jpg")
+          .setAuthor("YangBot", PROFILE_IMAGE_URL)
           .setColor(0xED25E9)
           .setFooter("If you need any other help with commands and functionality, go fuck yourself.")
           .setThumbnail(`${servReq.iconURL}`)   //FIXME: add thumbnail
@@ -241,7 +244,11 @@ function implicitCommands(msg){
 
     //Send squillion value
     if(txt.includes("squillion")){
-        sendMsg("259232147948794494594485446818048254863271026096382337884099237269509380022108148908589797968903058274437782549758243999867043174477180579595714249308002763427793979644775390625000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", chan);
+        sendMsg("2592321479487944945944854468180482548632710260963823378840992372695093800" 
+                + "22108148908589797968903058274437782549758243999867043174477180579595714" 
+                + "24930800276342779397964477539062500000000000000000000000000000000000000" 
+                + "00000000000000000000000000000000000000000000000000000000000000000000000" 
+                + "00000000000000000000000000000000000000000", chan);
     }
 
     //Eternal Suffering John
@@ -255,20 +262,23 @@ function implicitCommands(msg){
 
     ///Death to Israel
     if(txt === "death to israel"){
-        sendMsg("When you read the Quran, seek refuge with Allah from Satan the outcast. He has no authority over those who believe and trust in their Lord. His authority is only over those who follow him, and those who associate others with Him.", chan);
+        sendMsg("When you read the Quran, seek refuge with Allah from Satan the outcast." 
+                + " He has no authority over those who believe and trust in their Lord. " 
+                + "His authority is only over those who follow him, and those who associate" 
+                + " others with Him.", chan);
     }
 
     //What's fascism
     if(txt.includes("what's fascism") || txt.includes("what is fascism")){
         sendMsg("Fascism follows the truth, and uses nature "
-      + "as its guide to do so, as nature is a manifestation of what is true."
-      + " Fascism is an ancient ideology that predates man, for it is simply "
-      + "the law of nature and it has existed since life first erupted on Earth."
-      + " There can be one truth, but there can be infinite lies. Fascism is "
-      + "that one truth, and all other contemporary systems are lies and "
-      + "falsehoods that bear various degrees of accuracy to the truth. Fascism"
-      + " is hated because it is the truth, and liars fear what is true, and "
-      + "it is human nature to hate that which we fear.", chan);
+                + "as its guide to do so, as nature is a manifestation of what is true."
+                + " Fascism is an ancient ideology that predates man, for it is simply "
+                + "the law of nature and it has existed since life first erupted on Earth."
+                + " There can be one truth, but there can be infinite lies. Fascism is "
+                + "that one truth, and all other contemporary systems are lies and "
+                + "falsehoods that bear various degrees of accuracy to the truth. Fascism"
+                + " is hated because it is the truth, and liars fear what is true, and "
+                + "it is human nature to hate that which we fear.", chan);
     }
 
     //uwu
@@ -292,12 +302,25 @@ function implicitCommands(msg){
         sendMsg("Ian Smith and Cecil Rhodes are my heroes!", chan);
       }
       else if (rand == 2) {
-        sendMsg("Here's the story of Rhodesia, a land both fair and great. On 11th of November an independent state. This was much against the wishes of certain governments. Whose leaders tried to break us down, to make us all repent."
-        + " \'Cause we\'re all Rhodesians and we\'ll fight through thick and thin. We\'ll keep our land a free land, stop the enemy coming in. We\'ll keep them north of the Zambezi till that river\'s running dry. This mighty land will prosper for Rhodesians never die."
-        + " They can send their men to murder and they can shout their words of hate. But the cost of keeping this land free will never be too great. For our men and boys are fighting for the things that they hold dear. This land and all its people will never disappear."
-        + " \'Cause we\'re all Rhodesians and we\'ll fight through thick and thin. We'll keep our land a free land, stop the enemy coming in. We\'ll keep them north of the Zambezi till that river\'s running dry. This mighty land will prosper for Rhodesians never die."
-        + " We\'ll preserve this little nation, for our children\'s children too. For once you\'re a Rhodesian, no other land will do We will stand forth in the sunshine, with the truth upon our side. And if we have to go alone, we\'ll go alone with pride."
-        + " Cause\' we\'re all Rhodesians and we\'ll fight through thick and thin. We\'ll keep our land a free land, stop the enemy coming in. We\'ll keep them north of the Zambezi till that river\'s running dry. This mighty land will prosper for Rhodesians never die.", chan);
+        sendMsg("Here's the story of Rhodesia, a land both fair and great. On 11th of November" 
+                + " an independent state. This was much against the wishes of certain governments." 
+                + " Whose leaders tried to break us down, to make us all repent. \'Cause we\'re all" 
+                + " Rhodesians and we\'ll fight through thick and thin. We\'ll keep our land a free" 
+                + " land, stop the enemy coming in. We\'ll keep them north of the Zambezi till that" 
+                + " river\'s running dry. This mighty land will prosper for Rhodesians never die."
+                + " They can send their men to murder and they can shout their words of hate. But" 
+                + " the cost of keeping this land free will never be too great. For our men and boys" 
+                + " are fighting for the things that they hold dear. This land and all its people" 
+                + " will never disappear. \'Cause we\'re all Rhodesians and we\'ll fight through " 
+                + "thick and thin. We'll keep our land a free land, stop the enemy coming in. We\'ll" 
+                + " keep them north of the Zambezi till that river\'s running dry. This mighty land " 
+                + "will prosper for Rhodesians never die. We\'ll preserve this little nation, for our" 
+                + " children\'s children too. For once you\'re a Rhodesian, no other land will do We " 
+                + "will stand forth in the sunshine, with the truth upon our side. And if we have to " 
+                + "go alone, we\'ll go alone with pride. Cause\' we\'re all Rhodesians and we\'ll " 
+                + "fight through thick and thin. We\'ll keep our land a free land, stop the enemy " 
+                + "coming in. We\'ll keep them north of the Zambezi till that river\'s running dry." 
+                + " This mighty land will prosper for Rhodesians never die.", chan);
         }
        else if (rand == 3) {
           sendMsg("FAL best gun dont @ me", chan);
@@ -359,7 +382,7 @@ function sendImg(url, chan){
       chan.send({
         files: [url]
       })
-      .then(console.log("Image sent"))
+      .then(console.log("Image sent"));
     }
     catch(error){
         console.error(error);
